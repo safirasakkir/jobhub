@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+welcome candidate <h1>{{request.user}}</h1>
+
+{%if request.user.candidates%}
+<a href="">view proile</a>
+{%else%}
+<a href="{%url 'cand-addprofile'%}">Addprofile</a>
+{%endif%}
+<a href="">AllJobs</a>
+<a href="{%url 'my_app'%}">Applied_jobs</a>
+
+<div class="container">
+    <div class="row">
+        {%for job in jobs%}
+        <div class="col-4">
+            <div class="card text-bg-info mb-3" style="max-width: 18rem;">
+                <div class="card-header">{{job.job_title}}</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{job.role}}</h5>
+                    <p class="card-text">{{job.description}}</p>
+                    <p class="card-text">{{job.posted_by.username}}</p>
+
+
+                </div>
+                 <div class="card-footer bg-transparent border-success"><a href="{%url 'cand-detailjob' job.id %}" class="btn btn-success">view</a></div>
+            </div>
+
+        </div>
+        {%endfor%}
+    </div>
+</div>
+
+</body>
+</html>
+
+<!--viewprofile-->
+<!--listjobs-->
